@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chat Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fa-solid fa-robot"></i>
+                    <h2>Aethel Bot</h2>
+                </div>
+                <button class="close-sidebar-btn" id="close-sidebar-btn">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="sidebar-content">
+                <button class="new-chat-btn" onclick="location.reload()">
+                    <i class="fa-solid fa-plus"></i> New Chat
+                </button>
+
+                <div class="history-list">
+                    <p class="section-title">Recent</p>
+                    <div class="history-item active">
+                        <i class="fa-regular fa-message"></i>
+                        <span>Current Conversation</span>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="user-details">
+                        <span class="user-name">Guest User</span>
+                        <span class="user-status">Online</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-main">
+            <header class="chat-header">
+                <button id="mobile-menu-btn" class="mobile-menu-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="header-title">
+                    <h1>Aethel Bot</h1>
+                    <span class="badge"></span>
+                </div>
+                <div class="header-actions">
+                    <button class="icon-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                </div>
+            </header>
+
+            <div class="chat-container" id="chat-container">
+                <!-- Welcome Message -->
+                <div class="welcome-screen" id="welcome-screen">
+                    <div class="welcome-icon">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h2>How can I help you today?</h2>
+                    <p>I can answer questions, help you write code, or just have a chat.</p>
+
+                    <div class="suggestion-cards">
+                        <div class="suggestion-card"
+                            onclick="setInputAndSend('Explain quantum computing in simple terms')">
+                            <i class="fa-solid fa-atom"></i>
+                            <p>Explain quantum computing in simple terms</p>
+                        </div>
+                        <div class="suggestion-card"
+                            onclick="setInputAndSend('Write a python script for scraping a website')">
+                            <i class="fa-brands fa-python"></i>
+                            <p>Write a python script for scraping a website</p>
+                        </div>
+                        <div class="suggestion-card"
+                            onclick="setInputAndSend('Give me ideas for a weekend trip to the mountains')">
+                            <i class="fa-solid fa-mountain-sun"></i>
+                            <p>Give me ideas for a weekend trip to the mountains</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Messages will be appended here -->
+                <div class="messages-wrapper" id="messages-wrapper"></div>
+
+                <!-- Typing Indicator (Hidden by default) -->
+                <div class="typing-indicator-wrapper" id="typing-indicator" style="display: none;">
+                    <div class="message ai-message">
+                        <div class="avatar"><i class="fa-solid fa-robot"></i></div>
+                        <div class="message-content">
+                            <div class="typing-indicator">
+                                <span></span><span></span><span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-area">
+                <form id="chat-form" class="chat-form">
+                    <div class="input-wrapper">
+                        <textarea id="user-input" placeholder="Message Aethel Bot..." rows="1"></textarea>
+                        <button type="submit" id="send-btn" class="send-btn" disabled>
+                            <i class="fa-solid fa-arrow-up"></i>
+                        </button>
+                    </div>
+                    <div class="disclaimer">
+                        Aethel Bot can make mistakes. Consider verifying important information.
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- Markdown Parser (marked.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Syntax Highlighting (highlight.js) -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
